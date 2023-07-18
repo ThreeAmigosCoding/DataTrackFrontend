@@ -1,0 +1,22 @@
+#nav-bar{
+    width: 300px;
+    height: calc(100vh - 40px);
+    padding: 20px 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color:#1C273C;
+}
+
+button.nav-bar-button {
+    font-size: 20px;
+    color: #E9E9EB;
+    height: 36px;
+    padding-left: 0;
+    text-align: left;
+}
+
+button.nav-bar-button:hover{
+    background-color: #131D30;
+}
