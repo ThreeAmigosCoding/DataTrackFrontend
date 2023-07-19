@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import {User} from "../../../model/models";
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-register',
@@ -15,11 +17,22 @@ export class RegisterComponent {
     surname: new FormControl('', [Validators.required]),
   });
 
-  constructor(private dialogRef: MatDialogRef<RegisterComponent>){}
+  constructor(private dialogRef: MatDialogRef<RegisterComponent>, private authService: AuthService){}
 
   register(): void{
     if (this.registerForm.valid){
-      this.dialogRef.close();
+      let user: User = {
+        email: this.registerForm.get("email")?.value,
+        firstName: this.registerForm.get("name")?.value,
+        lastName: this.registerForm.get("surname")?.value,
+        password: this.registerForm.get("password")?.value
+      }
+      //TODO: add actual user email here
+      this.authService.register(user, "testingemail@123").subscribe({
+        next: value => this.dialogRef.close()
+      });
     }
   }
+
+
 }

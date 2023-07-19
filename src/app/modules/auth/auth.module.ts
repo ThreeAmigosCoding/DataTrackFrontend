@@ -8,8 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-
-
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -24,7 +23,8 @@ import {MatInputModule} from "@angular/material/input";
     MatButtonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule
   ]
 })
 export class AuthModule { }
