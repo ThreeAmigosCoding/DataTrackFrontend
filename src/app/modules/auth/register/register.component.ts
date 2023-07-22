@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import {User} from "../../../model/models";
 import {AuthService} from "../auth.service";
+import {UserRegistration} from "../../../model/models";
 
 @Component({
   selector: 'app-register',
@@ -21,7 +21,7 @@ export class RegisterComponent {
 
   register(): void{
     if (this.registerForm.valid){
-      let user: User = {
+      let user: UserRegistration = {
         email: this.registerForm.get("email")?.value,
         firstName: this.registerForm.get("name")?.value,
         lastName: this.registerForm.get("surname")?.value,
