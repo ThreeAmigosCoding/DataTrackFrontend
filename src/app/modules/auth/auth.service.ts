@@ -15,27 +15,19 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  register(user: UserRegistration, registeredBy: string): Observable<any>{
-    const queryParams = new HttpParams().set('registeredBy', registeredBy);
-    return this.http.post<any>(domain + "/User/register", user, {params: queryParams});
-  }
-
   isLoggedIn(): boolean {
     return localStorage.getItem('user') != null;
   }
 
-  getRole(): any {
+  isAdmin(): boolean {
     if (this.isLoggedIn()) {
       const accessTokenString: any = localStorage.getItem('user');
       const accessToken = JSON.parse(accessTokenString);
       const helper = new JwtHelperService();
-      const roles = helper.decodeToken(accessToken.accessToken).role;
-
-      const roleNames = roles.map((obj: { name: any; }) => obj.name);
-
-      return roleNames;
+      if (helper.decodeToken(accessToken.token).admin === "True")
+        return true;
     }
-    return null;
+    return false; 
   }
 
   getUserId(): number{
@@ -43,7 +35,7 @@ export class AuthService {
       const accessTokenString: any = localStorage.getItem('user');
       const accessToken = JSON.parse(accessTokenString);
       const helper = new JwtHelperService();
-      return helper.decodeToken(accessToken.accessToken).id;
+      return helper.decodeToken(accessToken.token).id;
     }
     return -1;
   }
@@ -53,17 +45,23 @@ export class AuthService {
       const accessTokenString: any = localStorage.getItem('user');
       const accessToken = JSON.parse(accessTokenString);
       const helper = new JwtHelperService();
-      return helper.decodeToken(accessToken.accessToken).sub;
+      return helper.decodeToken(accessToken.token).email;
     }
     return "";
   }
 
-  //TODO: add good routes
-  login(email: string | null | undefined, password: string | null | undefined) : Observable<MyTokenResponse>{
-    return this.http.post<MyTokenResponse>("", {"email": email, "password": password});
+  register(user: UserRegistration, registeredBy: string): Observable<any>{
+    console.log(registeredBy);
+    const queryParams = new HttpParams().set('registeredBy', registeredBy);
+    return this.http.post<any>(domain + "User/Register", user, {params: queryParams});
   }
+
+  login(email: string | null | undefined, password: string | null | undefined) : Observable<MyTokenResponse>{
+    return this.http.post<MyTokenResponse>(domain + "User/Login", {"email": email, "password": password});
+  }
+
   setUserLogged(): void {
-    this.userLogged$.next(this.getRole());
+    this.userLogged$.next(this.isAdmin());
   }
 
   logout(){

@@ -23,6 +23,7 @@ export class LoginComponent {
         next: value => {
           localStorage.setItem('user', JSON.stringify(value));
           this.authService.setUserLogged();
+          this.dialogRef.close();
         },
         error: err => alert(err.message)
       });

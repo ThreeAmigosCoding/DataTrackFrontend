@@ -27,9 +27,12 @@ export class RegisterComponent {
         lastName: this.registerForm.get("surname")?.value,
         password: this.registerForm.get("password")?.value
       }
-      //TODO: add actual user email here
-      this.authService.register(user, "testingemail@123").subscribe({
-        next: value => this.dialogRef.close()
+
+      this.authService.register(user, this.authService.getUserMail()).subscribe({
+        next: value => {
+          alert(value.message)
+          this.dialogRef.close()
+        }
       });
     }
   }
