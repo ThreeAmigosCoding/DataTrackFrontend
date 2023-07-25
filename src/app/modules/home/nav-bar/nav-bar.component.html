@@ -1,0 +1,20 @@
+<div id="nav-bar">
+    <button id="login-button" class="nav-bar-button"
+        mat-button
+        *ngIf="!authService.isLoggedIn()"
+        (click)="login()">
+        Login
+    </button>
+    <button id="register-button" class="nav-bar-button"
+        mat-button
+        *ngIf="authService.isAdmin()"
+        (click)="register()">
+        Register
+    </button>
+    <button id="logout-button" class="nav-bar-button"
+        mat-button
+        *ngIf="authService.isLoggedIn()"
+        (click)="logout()">
+        Log Out
+    </button>
+</div>
