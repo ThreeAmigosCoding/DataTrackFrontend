@@ -1,0 +1,88 @@
+<div id="input-creation-container">
+
+  <h1>Tag creation - {{tagType.toLowerCase()}}</h1>
+
+  <mat-slide-toggle [(ngModel)]="isDigital"
+                    [color]="'primary'"
+                    (ngModelChange)="changeType()">
+    {{tagType}}
+  </mat-slide-toggle>
+
+  <form [formGroup]="tagForm"
+        (ngSubmit)="createTag()">
+
+    <div id="tag-config">
+      <h2>Tag options</h2>
+
+      <div class="options">
+        <mat-form-field class="field">
+          <mat-label>Description</mat-label>
+          <input matInput type="text" name="description" formControlName="description">
+          <mat-error *ngIf="tagForm?.get('description')?.invalid">Description is required.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="field">
+          <mat-label>Select unit</mat-label>
+          <mat-select [disabled]="isDigital" [(value)]="unit" id="unit">
+            <mat-option value="KELVIN">Kelvin</mat-option>
+            <mat-option value="CELSIUS">Celsius</mat-option>
+            <mat-option value="FAHRENHEIT">Fahrenheit</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="field">
+          <mat-label>Low limit</mat-label>
+          <input  [attr.disabled]="isDigital ? true : null" matInput type="number" name="lowLimit" formControlName="lowLimit">
+          <mat-error *ngIf="tagForm?.get('lowLimit')?.invalid">Low limit invalid.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="field">
+          <mat-label>High limit</mat-label>
+          <input  [attr.disabled]="isDigital ? true : null" matInput type="number" name="highLimit" formControlName="highLimit">
+          <mat-error *ngIf="tagForm?.get('highLimit')?.invalid">High limit invalid.</mat-error>
+        </mat-form-field>
+      </div>
+
+
+    </div>
+
+    <div id="device-config">
+      <h2>Device options</h2>
+
+      <div class="options">
+        <mat-form-field class="field">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" name="name" formControlName="name">
+          <mat-error *ngIf="tagForm?.get('name')?.invalid">Name is required.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="field">
+          <mat-label>Driver</mat-label>
+          <mat-select [(value)]="simulationType" id="simulation-type">
+            <mat-option value="SIMULATION">Simulation</mat-option>
+            <mat-option value="RTU">RTU</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="field">
+          <mat-label>Lower bound</mat-label>
+          <input  [attr.disabled]="isDigital ? true : null" matInput type="number" name="lowerBound" formControlName="lowerBound">
+          <mat-error *ngIf="tagForm?.get('lowerBound')?.invalid">Lower bound invalid.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="field">
+          <mat-label>Upper bound</mat-label>
+          <input  [attr.disabled]="isDigital ? true : null" matInput type="number" name="upperBound" formControlName="upperBound">
+          <mat-error *ngIf="tagForm?.get('upperBound')?.invalid">Upper bound invalid.</mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <div id="button-container">
+        <button mat-button id="create-input-button" type="submit">Create</button>
+      </div>
+
+    </div>
+  </form>
+
+</div>

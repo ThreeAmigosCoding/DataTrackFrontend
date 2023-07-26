@@ -4,20 +4,19 @@ import { LoginComponent } from '../../auth/login/login.component';
 import { RegisterComponent } from '../../auth/register/register.component';
 import { AuthService } from '../../auth/auth.service';
 import { WebSocketService } from '../services/web-socket.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent implements OnInit{
-    
-  constructor(public loginDialog: MatDialog, public registerDialog: MatDialog, public authService: AuthService, public webSocketService: WebSocketService){}
-  
-  ngOnInit(): void {
-    this.webSocketService.startConnection();
-    this.webSocketService.addTransferChartDataListener();
-  }
+export class NavBarComponent {
+
+  constructor(public loginDialog: MatDialog,
+              public registerDialog: MatDialog,
+              public authService: AuthService,
+              public router: Router){}
 
   login(): void {
     this.loginDialog.open(LoginComponent);
@@ -29,5 +28,9 @@ export class NavBarComponent implements OnInit{
 
   logout(): void {
     this.authService.logout();
+  }
+
+  inputCreation(): void {
+    this.router.navigate(["input-creation"]);
   }
 }
