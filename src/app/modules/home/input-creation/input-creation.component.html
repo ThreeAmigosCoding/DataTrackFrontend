@@ -41,6 +41,12 @@
           <input  [attr.disabled]="isDigital ? true : null" matInput type="number" name="highLimit" formControlName="highLimit">
           <mat-error *ngIf="tagForm?.get('highLimit')?.invalid">High limit invalid.</mat-error>
         </mat-form-field>
+
+        <mat-form-field class="field">
+          <mat-label>Scan Time (milliseconds)</mat-label>
+          <input matInput type="number" name="scanTime" formControlName="scanTime">
+          <mat-error *ngIf="tagForm?.get('scanTime')?.invalid">Scan time invalid.</mat-error>
+        </mat-form-field>
       </div>
 
 
