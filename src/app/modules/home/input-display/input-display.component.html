@@ -1,0 +1,21 @@
+<div id="input-display-container">
+  <div id="analog-inputs-container">
+    <h2>Analog inputs</h2>
+    <div id="analog-inputs-content" class="inputs-content">
+      <div *ngFor="let analogInput of analogInputs" class="analog-item input-item">
+        <p class="input-description">{{analogInput.description}}</p>
+        <p class="input-value">Temperature: {{analogInput.value}} {{analogInput.unit}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="digital-inputs-container">
+    <h2>Digital inputs</h2>
+    <div id="digital-inputs-content" class="inputs-content">
+      <div *ngFor="let digitalInput of digitalInputs" class="digital-item input-item">
+        <p class="input-description">{{digitalInput.description}}</p>
+        <p class="input-value">Value: {{digitalInput.value == 1 ? "On" : "Off"}}</p>
+      </div>
+    </div>
+  </div>
+</div>

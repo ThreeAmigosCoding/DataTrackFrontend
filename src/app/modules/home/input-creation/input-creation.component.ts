@@ -14,11 +14,12 @@ export class InputCreationComponent implements OnInit{
   tagType: string = "Analog";
   isDigital: boolean = false;
   simulationType: string = "SIMULATION";
-  unit: string = "KELVIN";
+  unit: string = "K";
 
   constructor(private authService: AuthService, private inputService: InputService) {
   }
 
+  //region Tag Creation
   validateBound = (control: AbstractControl): {[key: string]: any} | null => {
     const lowerBound = this.tagForm?.get('lowerBound')?.value as number;
     const upperBound = control.value;
@@ -122,5 +123,7 @@ export class InputCreationComponent implements OnInit{
       error: err => alert(err.error.message)
     });
   }
+
+  //endregion
 
 }

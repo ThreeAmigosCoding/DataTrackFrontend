@@ -10,13 +10,15 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
+import { InputDisplayComponent } from './input-display/input-display.component';
 
 
 
 @NgModule({
   declarations: [
     NavBarComponent,
-    InputCreationComponent
+    InputCreationComponent,
+    InputDisplayComponent
   ],
   imports: [
     CommonModule,

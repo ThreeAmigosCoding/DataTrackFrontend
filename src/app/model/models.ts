@@ -31,3 +31,17 @@ export interface AnalogInput extends DigitalInput {
   highLimit: number,
   unit: string
 }
+
+
+export interface InputRecord {
+  inputId: string,
+  ioAddress: string,
+  description: string,
+  value: number,
+  driver: string,
+  deviceName: string,
+  scanOn: boolean,
+  isDigital: boolean,
+  unit?: string
+}
+

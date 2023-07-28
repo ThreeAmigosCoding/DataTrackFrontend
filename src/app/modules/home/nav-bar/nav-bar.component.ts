@@ -34,4 +34,8 @@ export class NavBarComponent {
   inputCreation(): void {
     this.router.navigate(["input-creation"]);
   }
+
+  inputDisplay() {
+    this.router.navigate(["input-display"]);
+  }
 }

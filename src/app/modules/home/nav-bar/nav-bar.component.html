@@ -11,6 +11,12 @@
             (click)="inputCreation()">
       Create tag
     </button>
+    <button id="input-display" class="nav-bar-button"
+            mat-button
+            *ngIf="authService.isLoggedIn()"
+            (click)="inputDisplay()">
+      Tags
+    </button>
     <button id="register-button" class="nav-bar-button"
         mat-button
         *ngIf="authService.isAdmin()"
