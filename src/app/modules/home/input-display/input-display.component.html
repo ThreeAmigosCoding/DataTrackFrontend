@@ -1,21 +1,51 @@
 <div id="input-display-container">
   <div id="analog-inputs-container">
     <h2>Analog inputs</h2>
-    <div id="analog-inputs-content" class="inputs-content">
-      <div *ngFor="let analogInput of analogInputs" class="analog-item input-item">
-        <p class="input-description">{{analogInput.description}}</p>
-        <p class="input-value">Temperature: {{analogInput.value}} {{analogInput.unit}}</p>
-      </div>
-    </div>
+    <mat-accordion multi>
+      <mat-expansion-panel *ngFor="let analogInput of analogInputs" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{analogInput.deviceName}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{analogInput.description}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-slide-toggle [checked]="analogInput.scanOn"
+                          [color]="'primary'">
+          {{analogInput.scanOn ? "On" : "Off"}}
+        </mat-slide-toggle>
+        <p>Temperature: {{analogInput.value}} {{analogInput.unit}}</p>
+        <mat-divider></mat-divider>
+        <p>Driver: {{analogInput.driver}}</p>
+        <mat-divider></mat-divider>
+        <p>IO Address: {{analogInput.ioAddress}}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
 
   <div id="digital-inputs-container">
     <h2>Digital inputs</h2>
-    <div id="digital-inputs-content" class="inputs-content">
-      <div *ngFor="let digitalInput of digitalInputs" class="digital-item input-item">
-        <p class="input-description">{{digitalInput.description}}</p>
-        <p class="input-value">Value: {{digitalInput.value == 1 ? "On" : "Off"}}</p>
-      </div>
-    </div>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let digitalInput of digitalInputs" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{digitalInput.deviceName}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{digitalInput.description}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-slide-toggle [checked]="digitalInput.scanOn"
+                          [color]="'primary'">
+          {{digitalInput.scanOn ? "On" : "Off"}}
+        </mat-slide-toggle>
+        <p>Value: {{digitalInput.value == 1 ? "On" : "Off"}}</p>
+        <mat-divider></mat-divider>
+        <p>Driver: {{digitalInput.driver}}</p>
+        <mat-divider></mat-divider>
+        <p>IO Address: {{digitalInput.ioAddress}}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
 </div>

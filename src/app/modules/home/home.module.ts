@@ -11,6 +11,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import { InputDisplayComponent } from './input-display/input-display.component';
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatListModule} from "@angular/material/list";
 
 
 
@@ -29,7 +31,9 @@ import { InputDisplayComponent } from './input-display/input-display.component';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatExpansionModule,
+    MatListModule,
   ],
   exports:[
     NavBarComponent

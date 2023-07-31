@@ -1,35 +1,10 @@
-#input-display-container{
+#input-display-container {
+  padding: 0 20px 40px;
   width: calc(100vw - 340px);
   display: flex;
-  gap: 30px;
-  justify-content: space-between;
-  padding-left: 20px;
-}
-
-.inputs-content{
-  display: flex;
   flex-direction: column;
-  gap: 10px;
-  overflow: auto;
+  gap: 20px;
+  height: calc(100vh - 40px);
+  overflow-y: auto;
 }
 
-.input-item{
-  width: 700px;
-  height: 300px;
-  border: 1px solid #131D30;
-  padding: 10px;
-}
-
-.input-description{
-  font-weight: bold;
-  font-size: 18px;
-}
-
-p{
-  margin: 0;
-}
-
-.input-value{
-  font-size: 20px;
-  font-weight: bold;
-}
