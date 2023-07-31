@@ -21,7 +21,7 @@ export class InputDisplayComponent implements OnInit{
 
   ngOnInit() {
 
-    this.webSocketService.startConnection();
+    this.webSocketService.startConnection("input");
     this.webSocketService.addDataListener(message =>{
       if (message.isDigital)
         this.updateDigitalInputs(message.inputId, message.value);

@@ -12,14 +12,14 @@ export class WebSocketService {
   constructor(public authService: AuthService) {
   }
 
-  public startConnection = () => {
+  public startConnection = (connectionName: string) => {
     this.hubConnection = new signalR.HubConnectionBuilder()
-    .withUrl('http://localhost:5157/socket/input', {withCredentials: true})
+    .withUrl('http://localhost:5157/socket/' + connectionName, {withCredentials: true})
     .build();
 
     this.hubConnection
       .start()
-      .then(() => console.log('Connection started'))
+      .then(() => console.log(connectionName + ' connection started'))
       .catch(err => console.log('Error while starting connection: ' + err))
 
 
