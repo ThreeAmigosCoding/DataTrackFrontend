@@ -1,0 +1,42 @@
+#input-creation-container {
+  margin: 20px;
+  width: calc(100vw - 340px);
+}
+
+form {
+  display: flex;
+  width: 100%;
+}
+
+.options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.field {
+  width: 40%;
+}
+
+mat-slide-toggle {
+  color: #1C273C;
+}
+
+#button-container {
+  width: calc(80% + 10px);
+  display: flex;
+  justify-content: right;
+}
+
+button {
+  width: 20%;
+  background-color: #1C273C;
+  color: #E9E9EB !important;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
+
+

@@ -1,0 +1,10 @@
+#input-display-container {
+  padding: 0 20px 40px;
+  width: calc(100vw - 340px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: calc(100vh - 40px);
+  overflow-y: auto;
+}
+

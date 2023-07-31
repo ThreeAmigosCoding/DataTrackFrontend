@@ -8,3 +8,40 @@ export interface UserRegistration{
 export interface MyTokenResponse{
   token: string
 }
+
+export interface Device{
+  id?: string,
+  name: string,
+  driver: string
+  lowerBound: number,
+  upperBound: number,
+  isDigital: boolean
+}
+
+export interface DigitalInput{
+  id?: string
+  description: string,
+  scanTime: number,
+  createdBy: string,
+  device: Device
+}
+
+export interface AnalogInput extends DigitalInput {
+  lowLimit: number,
+  highLimit: number,
+  unit: string
+}
+
+
+export interface InputRecord {
+  inputId: string,
+  ioAddress: string,
+  description: string,
+  value: number,
+  driver: string,
+  deviceName: string,
+  scanOn: boolean,
+  isDigital: boolean,
+  unit?: string
+}
+

@@ -1,1 +1,1 @@
-export const domain: string = "http://localhost:53306/api/"
+export const domain: string = "http://localhost:5157/api/"

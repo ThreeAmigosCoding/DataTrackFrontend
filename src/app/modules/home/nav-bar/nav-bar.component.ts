@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import { LoginComponent } from '../../auth/login/login.component';
 import { RegisterComponent } from '../../auth/register/register.component';
 import { AuthService } from '../../auth/auth.service';
+import { WebSocketService } from '../services/web-socket.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,8 +12,11 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-    
-  constructor(public loginDialog: MatDialog, public registerDialog: MatDialog, public authService: AuthService){}
+
+  constructor(public loginDialog: MatDialog,
+              public registerDialog: MatDialog,
+              public authService: AuthService,
+              public router: Router){}
 
   login(): void {
     this.loginDialog.open(LoginComponent);
@@ -23,5 +28,14 @@ export class NavBarComponent {
 
   logout(): void {
     this.authService.logout();
+    this.router.navigate(['/']);
+  }
+
+  inputCreation(): void {
+    this.router.navigate(["input-creation"]);
+  }
+
+  inputDisplay() {
+    this.router.navigate(["input-display"]);
   }
 }
