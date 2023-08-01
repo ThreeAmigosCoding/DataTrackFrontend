@@ -6,10 +6,9 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './modules/home/home.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
-import {TokenInterceptor} from "./modules/auth/tokenInterceptor";
-import {ToastrModule} from "ngx-toastr";
-
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { TokenInterceptor } from "./modules/auth/tokenInterceptor";
+import { NotifierModule } from 'angular-notifier';
 
 @NgModule({
   declarations: [
@@ -21,10 +20,23 @@ import {ToastrModule} from "ngx-toastr";
     HomeModule,
     BrowserAnimationsModule,
     AuthModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-top-right', // You can change the toast position here
-      timeOut: 3000, // Duration for how long the toast will be displayed (in milliseconds)
-      progressBar: true, // Show a progress bar or not
+    NotifierModule.withConfig({
+      position: {
+        horizontal: {
+          position: 'right',
+        },
+        vertical: {
+          position: 'bottom',
+        },
+      },
+      behaviour: {
+        autoHide: false,
+        onClick: false,
+        onMouseover: 'pauseAutoHide',
+        showDismissButton: true,
+        stacking: 3
+
+      }
     })
   ],
   providers: [
