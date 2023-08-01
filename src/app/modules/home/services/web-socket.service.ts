@@ -21,8 +21,6 @@ export class WebSocketService {
       .start()
       .then(() => console.log(connectionName + ' connection started'))
       .catch(err => console.log('Error while starting connection: ' + err))
-
-
   }
 
   public addDataListener = (callback:(message: any) => void) => {
@@ -32,5 +30,12 @@ export class WebSocketService {
     });
   }
 
+  public stopConnection = () => {
+    if (this.hubConnection) {
+      this.hubConnection.stop()
+        .then(() => console.log('Connection stopped'))
+        .catch(err => console.log('Error while stopping connection: ' + err));
+    }
+  }
 
 }

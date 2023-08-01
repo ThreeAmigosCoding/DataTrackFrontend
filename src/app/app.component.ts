@@ -1,26 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {WebSocketService} from "./modules/home/services/web-socket.service";
 import {ToastrService} from "ngx-toastr";
+import {AlarmService} from "./modules/home/services/alarm.service";
+import {AuthService} from "./modules/auth/auth.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'DataTrackFrontend';
-
-  constructor(private webSocketService: WebSocketService,
-              private toastr: ToastrService) {
+  constructor() {
 
   }
 
-  // TODO: prikazivati samo odredjenim userima
-  ngOnInit(): void {
-    this.webSocketService.startConnection("alarm");
-    this.webSocketService.addDataListener(notification => {
-     console.log(notification.priority)
-      this.toastr.success(notification.message, notification.title)
-    });
-  }
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {MatRadioModule} from "@angular/material/radio";
 import {MatButtonModule} from "@angular/material/button";
@@ -13,6 +13,7 @@ import {MatSelectModule} from "@angular/material/select";
 import { InputDisplayComponent } from './input-display/input-display.component';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatListModule} from "@angular/material/list";
+import { WelcomeComponent } from './welcome/welcome.component';
 
 
 
@@ -20,7 +21,8 @@ import {MatListModule} from "@angular/material/list";
   declarations: [
     NavBarComponent,
     InputCreationComponent,
-    InputDisplayComponent
+    InputDisplayComponent,
+    WelcomeComponent
   ],
   imports: [
     CommonModule,
@@ -34,6 +36,7 @@ import {MatListModule} from "@angular/material/list";
     MatSelectModule,
     MatExpansionModule,
     MatListModule,
+    NgOptimizedImage,
   ],
   exports:[
     NavBarComponent
