@@ -3,7 +3,6 @@ import {MatDialog} from "@angular/material/dialog";
 import { LoginComponent } from '../../auth/login/login.component';
 import { RegisterComponent } from '../../auth/register/register.component';
 import { AuthService } from '../../auth/auth.service';
-import { WebSocketService } from '../services/web-socket.service';
 import {Router} from "@angular/router";
 
 @Component({
@@ -28,7 +27,7 @@ export class NavBarComponent {
 
   logout(): void {
     this.authService.logout();
-    this.router.navigate(['/']);
+    this.router.navigate(['welcome']);
   }
 
   inputCreation(): void {

@@ -45,3 +45,22 @@ export interface InputRecord {
   unit?: string
 }
 
+export interface Alarm {
+  type: AlarmType;
+  priority: AlarmPriority;
+  edgeValue: number;
+  unit: string;
+  analogInputId: string;
+}
+
+export enum AlarmType{
+  Lower = 0,
+  Higher = 1
+}
+
+export enum AlarmPriority{
+  Low = 0,
+  Medium = 1,
+  High = 2
+}
+

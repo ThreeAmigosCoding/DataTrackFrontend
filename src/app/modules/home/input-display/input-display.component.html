@@ -2,7 +2,7 @@
   <div id="analog-inputs-container">
     <h2>Analog inputs</h2>
     <mat-accordion multi>
-      <mat-expansion-panel *ngFor="let analogInput of analogInputs" hideToggle>
+      <mat-expansion-panel *ngFor="let analogInput of analogInputs; let i = index" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
             {{analogInput.deviceName}}
@@ -11,10 +11,17 @@
             {{analogInput.description}}
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <mat-slide-toggle [checked]="analogInput.scanOn"
-                          [color]="'primary'">
-          {{analogInput.scanOn ? "On" : "Off"}}
-        </mat-slide-toggle>
+
+        <div class="control-container">
+          <mat-slide-toggle [checked]="analogInput.scanOn"
+                            [color]="'primary'">
+            {{analogInput.scanOn ? "On" : "Off"}}
+          </mat-slide-toggle>
+
+          <button class="add-alarm" type="button" mat-button (click)="addAlarm(i)">Add alarm</button>
+        </div>
+
+
         <p>Temperature: {{analogInput.value}} {{analogInput.unit}}</p>
         <mat-divider></mat-divider>
         <p>Driver: {{analogInput.driver}}</p>
@@ -36,10 +43,13 @@
             {{digitalInput.description}}
           </mat-panel-description>
         </mat-expansion-panel-header>
+
+
         <mat-slide-toggle [checked]="digitalInput.scanOn"
                           [color]="'primary'">
           {{digitalInput.scanOn ? "On" : "Off"}}
         </mat-slide-toggle>
+
         <p>Value: {{digitalInput.value == 1 ? "On" : "Off"}}</p>
         <mat-divider></mat-divider>
         <p>Driver: {{digitalInput.driver}}</p>

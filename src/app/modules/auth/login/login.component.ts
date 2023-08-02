@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import {AuthService} from "../auth.service";
+import {WebSocketService} from "../../home/services/web-socket.service";
+import {AlarmService} from "../../home/services/alarm.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-login',
@@ -15,9 +18,10 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required, Validators.minLength(5)])
   });
 
-  constructor(private dialogRef: MatDialogRef<LoginComponent>, private authService: AuthService){}
+  constructor(private dialogRef: MatDialogRef<LoginComponent>,
+              private authService: AuthService){}
 
-  login(): void{
+  login(): void {
     if (this.loginForm.valid){
       this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
         next: value => {
