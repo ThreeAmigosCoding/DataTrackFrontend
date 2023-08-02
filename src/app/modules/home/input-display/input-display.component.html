@@ -14,7 +14,8 @@
 
         <div class="control-container">
           <mat-slide-toggle [checked]="analogInput.scanOn"
-                            [color]="'primary'">
+                            [color]="'primary'"
+                            (change)="switchAnalogInputState(i)">
             {{analogInput.scanOn ? "On" : "Off"}}
           </mat-slide-toggle>
 
@@ -34,7 +35,7 @@
   <div id="digital-inputs-container">
     <h2>Digital inputs</h2>
     <mat-accordion>
-      <mat-expansion-panel *ngFor="let digitalInput of digitalInputs" hideToggle>
+      <mat-expansion-panel *ngFor="let digitalInput of digitalInputs; let i = index" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
             {{digitalInput.deviceName}}
@@ -46,7 +47,8 @@
 
 
         <mat-slide-toggle [checked]="digitalInput.scanOn"
-                          [color]="'primary'">
+                          [color]="'primary'"
+                          (change)="switchDigitalInputState(i)">
           {{digitalInput.scanOn ? "On" : "Off"}}
         </mat-slide-toggle>
 

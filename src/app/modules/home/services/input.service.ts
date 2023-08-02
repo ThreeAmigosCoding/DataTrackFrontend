@@ -22,4 +22,12 @@ export class InputService {
   getAllUserInputs(id: string): Observable<InputRecord[]> {
     return this.http.get<InputRecord[]>(domain + "input/GetAllUserInputs/" + id);
   }
+
+  switchAnalogInputState(id: string): Observable<any> {
+    return this.http.put<any>(domain + "input/SwitchAnalogInputState/" + id, {})
+  }
+
+  switchDigitalInputState(id: string): Observable<any> {
+    return this.http.put<any>(domain + "input/SwitchDigitalInputState/" + id, {})
+  }
 }
