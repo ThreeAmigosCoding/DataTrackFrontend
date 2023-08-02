@@ -3,6 +3,8 @@ import {InputRecord} from "../../../model/models";
 import {WebSocketService} from "../services/web-socket.service";
 import {InputService} from "../services/input.service";
 import {AuthService} from "../../auth/auth.service";
+import {MatDialog} from "@angular/material/dialog";
+import {AlarmCreationComponent} from "../alarm-creation/alarm-creation.component";
 
 @Component({
   selector: 'app-input-display',
@@ -16,7 +18,8 @@ export class InputDisplayComponent implements OnInit{
 
   constructor(private webSocketService: WebSocketService,
               private inputService: InputService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -58,5 +61,7 @@ export class InputDisplayComponent implements OnInit{
   }
 
 
-
+  addAlarm(i: number) {
+    this.dialog.open(AlarmCreationComponent, {data: this.analogInputs[i]});
+  }
 }

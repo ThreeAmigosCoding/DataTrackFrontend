@@ -1,6 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Alarm, AlarmPriority, AlarmType} from "../../../model/models";
+import {Alarm, AlarmPriority, AlarmType, InputRecord} from "../../../model/models";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {AlarmService} from "../services/alarm.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'app-alarm-creation',
@@ -8,6 +12,13 @@ import {Alarm, AlarmPriority, AlarmType} from "../../../model/models";
   styleUrls: ['./alarm-creation.component.css']
 })
 export class AlarmCreationComponent {
+
+  constructor(private dialogRef: MatDialogRef<AlarmCreationComponent>,
+              @Inject(MAT_DIALOG_DATA) public inputRecord: InputRecord,
+              private alarmService: AlarmService,
+              private snackBar: MatSnackBar,
+              private authService: AuthService) {
+  }
 
   alarmTypeOptions = Object.keys(AlarmType)
     .filter(key => typeof AlarmType[key as keyof typeof AlarmType] === 'number')
@@ -35,8 +46,8 @@ export class AlarmCreationComponent {
     type: new FormControl(this.initialAlarm.type, Validators.required),
     priority: new FormControl(this.initialAlarm.priority, Validators.required),
     edgeValue: new FormControl(this.initialAlarm.edgeValue, [Validators.required, Validators.min(-1000),
-    Validators.max(1000)]),
-    unit: new FormControl(this.initialAlarm.unit, [Validators.required])
+      Validators.max(1000)]),
+    unit: new FormControl({ value: this.unitDisplay(), disabled: true })
   });
 
 
@@ -45,10 +56,36 @@ export class AlarmCreationComponent {
       return
 
     let alarmToCreate: Alarm = this.alarmForm.value as Alarm;
-    //postaviti vrednost analogInputId-a ovde
-    alarmToCreate.analogInputId = "analogInputId";
+    alarmToCreate.analogInputId = this.inputRecord.inputId;
+    alarmToCreate.unit = this.inputRecord.unit as string;
     console.log(alarmToCreate);
-    //poslati request za kreiranje alarma ovde
+    this.alarmService.addAlarm(alarmToCreate).subscribe({
+      next: value => {
+        this.snackBar.open(value.message, "OK");
+        this.updateAlarms();
+        this.dialogRef.close();
+      }, error: err => this.snackBar.open(err.message, "OK")
+    })
+  }
+
+  updateAlarms() {
+    this.alarmService.getAllUserAlarms(this.authService.getUserId()).subscribe({
+      next: value => this.alarmService.setAlarmIdsState(value),
+      error: err => this.snackBar.open(err.message)
+    })
+  }
+
+  private unitDisplay(): string {
+    switch (this.inputRecord.unit) {
+      case "C":
+        return "Celsius";
+      case "F":
+        return "Fahrenheit";
+      case "K":
+        return "Kelvin";
+      default:
+        return ""
+    }
   }
 
 }

@@ -19,7 +19,6 @@ export class AppComponent implements OnInit{
   constructor(private authService: AuthService,
               private webSocketService: WebSocketService,
               private alarmService: AlarmService,
-              private snackBar: MatSnackBar,
               notifierService: NotifierService) {
     this.notifier = notifierService;
   }

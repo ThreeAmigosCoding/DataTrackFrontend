@@ -23,15 +23,11 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Unit</mat-label>
-      <mat-select formControlName="unit">
-        <mat-option value="K">Kelvin</mat-option>
-        <mat-option value="C">Celsius</mat-option>
-        <mat-option value="F">Fahrenheit</mat-option>
-      </mat-select>
+      <input [disabled]="true" matInput name="unit" formControlName="unit">
     </mat-form-field>
 
     <div id="button-container">
-      <button mat-button id="create-alarm-button" type="submit">Create</button>
+      <button mat-button id="create-alarm-button" type="submit">Add alarm</button>
     </div>
   </form>
 </div>

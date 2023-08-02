@@ -1,10 +1,24 @@
-#alarm-creation-container{
+#alarm-creation-container {
   margin: 20px;
-  width: calc(100vw - 340px);
+  width: 20vw;
 }
 
-form{
+form {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 100%;
+}
+
+#create-alarm-button {
+  width: 120px;
+  background-color: #1C273C;
+  color: #E9E9EB !important;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#button-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
