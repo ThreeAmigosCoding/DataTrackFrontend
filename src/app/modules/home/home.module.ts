@@ -14,6 +14,7 @@ import { InputDisplayComponent } from './input-display/input-display.component';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatListModule} from "@angular/material/list";
 import { WelcomeComponent } from './welcome/welcome.component';
+import { AlarmCreationComponent } from './alarm-creation/alarm-creation.component';
 
 
 
@@ -22,7 +23,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
     NavBarComponent,
     InputCreationComponent,
     InputDisplayComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    AlarmCreationComponent
   ],
   imports: [
     CommonModule,
@@ -38,8 +40,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
     MatListModule,
     NgOptimizedImage,
   ],
-  exports:[
-    NavBarComponent
-  ]
+    exports: [
+        NavBarComponent,
+        AlarmCreationComponent
+    ]
 })
 export class HomeModule { }

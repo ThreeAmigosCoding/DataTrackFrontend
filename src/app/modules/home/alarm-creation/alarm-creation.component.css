@@ -1,0 +1,10 @@
+#alarm-creation-container{
+  margin: 20px;
+  width: calc(100vw - 340px);
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
