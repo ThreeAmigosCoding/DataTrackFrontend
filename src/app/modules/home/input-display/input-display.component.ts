@@ -5,6 +5,7 @@ import {InputService} from "../services/input.service";
 import {AuthService} from "../../auth/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AlarmCreationComponent} from "../alarm-creation/alarm-creation.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-input-display',
@@ -19,6 +20,7 @@ export class InputDisplayComponent implements OnInit{
   constructor(private webSocketService: WebSocketService,
               private inputService: InputService,
               private authService: AuthService,
+              private snackBar: MatSnackBar,
               private dialog: MatDialog) {
   }
 
@@ -34,6 +36,7 @@ export class InputDisplayComponent implements OnInit{
 
     this.inputService.getAllUserInputs(this.authService.getUserId()).subscribe({
       next: value => {
+        console.log(value)
         value.map(item => {
           if (item.isDigital) this.digitalInputs.push(item);
           else this.analogInputs.push(item);
@@ -63,5 +66,31 @@ export class InputDisplayComponent implements OnInit{
 
   addAlarm(i: number) {
     this.dialog.open(AlarmCreationComponent, {data: this.analogInputs[i]});
+  }
+
+  switchAnalogInputState(i: number) {
+    this.inputService.switchAnalogInputState(this.analogInputs[i].inputId).subscribe({
+      next: value => {
+        this.snackBar.open(value.message, "OK", {
+          duration: 5000,
+          panelClass: ['blue-snackbar']
+        });
+        this.analogInputs[i].scanOn = !this.analogInputs[i].scanOn;
+      },
+      error: err => alert(err.error.message)
+    })
+  }
+
+  switchDigitalInputState(i: number) {
+    this.inputService.switchDigitalInputState(this.digitalInputs[i].inputId).subscribe({
+      next: value => {
+        this.snackBar.open(value.message, "OK", {
+          duration: 5000,
+          panelClass: ['blue-snackbar']
+        });
+        this.digitalInputs[i].scanOn = !this.digitalInputs[i].scanOn;
+      },
+      error: err => alert(err.error.message)
+    })
   }
 }
