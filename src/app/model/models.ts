@@ -53,6 +53,10 @@ export interface Alarm {
   analogInputId: string;
 }
 
+export interface AlarmDisplay extends Alarm {
+  id: string;
+}
+
 export enum AlarmType{
   Lower = 0,
   Higher = 1

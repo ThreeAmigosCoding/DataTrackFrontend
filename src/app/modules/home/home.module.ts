@@ -15,6 +15,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {MatListModule} from "@angular/material/list";
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AlarmCreationComponent } from './alarm-creation/alarm-creation.component';
+import { AlarmDisplayComponent } from './alarm-display/alarm-display.component';
 
 
 
@@ -24,7 +25,8 @@ import { AlarmCreationComponent } from './alarm-creation/alarm-creation.componen
     InputCreationComponent,
     InputDisplayComponent,
     WelcomeComponent,
-    AlarmCreationComponent
+    AlarmCreationComponent,
+    AlarmDisplayComponent
   ],
   imports: [
     CommonModule,

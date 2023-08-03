@@ -19,7 +19,10 @@
             {{analogInput.scanOn ? "On" : "Off"}}
           </mat-slide-toggle>
 
-          <button class="add-alarm" type="button" mat-button (click)="addAlarm(i)">Add alarm</button>
+          <div class="alarm-buttons-container">
+            <button type="button" mat-button (click)="openAlarms(i)">Alarms</button>
+            <button type="button" mat-button (click)="addAlarm(i)">Add alarm</button>
+          </div>
         </div>
 
 

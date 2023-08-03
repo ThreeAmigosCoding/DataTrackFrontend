@@ -6,6 +6,7 @@ import {AuthService} from "../../auth/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AlarmCreationComponent} from "../alarm-creation/alarm-creation.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {AlarmDisplayComponent} from "../alarm-display/alarm-display.component";
 
 @Component({
   selector: 'app-input-display',
@@ -92,5 +93,9 @@ export class InputDisplayComponent implements OnInit{
       },
       error: err => alert(err.error.message)
     })
+  }
+
+  openAlarms(i: number) {
+    this.dialog.open(AlarmDisplayComponent, {data: this.analogInputs[i]});
   }
 }
