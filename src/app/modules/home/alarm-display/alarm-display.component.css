@@ -1,0 +1,55 @@
+#alarm-display-container {
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+}
+
+h1 {
+  margin: 0 auto;
+}
+
+.alarms-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.alarm {
+  width: 25%;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: #E9E9EB;
+  box-shadow: 1px 1px 4px #151515;
+}
+
+.alarm button{
+  width: 60px;
+  background-color: transparent;
+  border: 2px solid #E9E9EB;
+  border-radius: 10px;
+  color: #E9E9EB !important;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  margin: 0 auto;
+}
+
+.alarm button mat-icon {
+  margin-left: 8px;
+}
+
+.priority-0 {
+  background-color: #444444;
+}
+
+.priority-1 {
+  background-color: #f0ad4e;
+}
+
+.priority-2 {
+  background-color: #d9534f;
+}
+

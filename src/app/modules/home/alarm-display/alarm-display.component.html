@@ -1,0 +1,15 @@
+<div id="alarm-display-container">
+  <h1>Alarms</h1>
+  <div class="alarms-container">
+    <div *ngFor="let alarm of alarms; let i = index" class="alarm"
+         [ngClass]="getPriorityColor(alarm.priority)">
+      <p>Type: {{ alarmTypeOptions[alarm.type].viewValue }}</p>
+      <p>Priority: {{ alarmPriorityOptions[alarm.priority].viewValue }}</p>
+      <p>Edge Value: {{ alarm.edgeValue }}</p>
+      <p>Unit: {{ unitDisplay(alarm.unit) }}</p>
+      <button type="button" mat-button (click)="deleteAlarm(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
 import {domain} from "../../../environment";
-import {Alarm} from "../../../model/models";
+import {Alarm, AlarmDisplay} from "../../../model/models";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,14 @@ export class AlarmService {
 
   public addAlarm(alarm: Alarm): Observable<any> {
     return this.http.post<any>(domain + "Alarm/CreateAlarm", alarm);
+  }
+
+  public getInputAlarms(inputId: string): Observable<AlarmDisplay[]> {
+    return this.http.get<AlarmDisplay[]>(domain + "Alarm/GetAllInputAlarms/" + inputId);
+  }
+
+  public deleteAlarm(id: string): Observable<any> {
+    return this.http.delete<any>(domain + "Alarm/DeleteAlarm/" + id)
   }
 
 }
