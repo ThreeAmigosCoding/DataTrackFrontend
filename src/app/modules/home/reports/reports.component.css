@@ -1,0 +1,20 @@
+#reports-container {
+  width: calc(100vw - 300px);
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+#buttons-container {
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 60px);
+  margin: 20px;
+}
+
+
+.mat-button-toggle {
+  flex: 1; /* Each button takes equal width */
+  display: flex;
+  align-items: center; /* Center the text vertically */
+  justify-content: center; /* Center the text horizontally */
+}

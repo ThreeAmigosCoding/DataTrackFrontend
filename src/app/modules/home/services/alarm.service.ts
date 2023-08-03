@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
 import {domain} from "../../../environment";
-import {Alarm, AlarmDisplay} from "../../../model/models";
+import {Alarm, AlarmDisplay, AlarmRecord, DateRange} from "../../../model/models";
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +32,10 @@ export class AlarmService {
 
   public deleteAlarm(id: string): Observable<any> {
     return this.http.delete<any>(domain + "Alarm/DeleteAlarm/" + id)
+  }
+
+  public getAlarmRecordsByTime(dateRange: DateRange): Observable<AlarmRecord[]> {
+    return this.http.put<AlarmRecord[]>(domain + "Alarm/GetAlarmRecordsByTime", dateRange);
   }
 
 }

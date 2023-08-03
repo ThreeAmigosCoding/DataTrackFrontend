@@ -68,3 +68,15 @@ export enum AlarmPriority{
   High = 2
 }
 
+export interface AlarmRecord {
+  id: string;
+  alarmDto: AlarmDisplay;
+  value: number;
+  recordedAt: Date;
+}
+
+export interface DateRange {
+  startTime: string;
+  endTime: string;
+}
+

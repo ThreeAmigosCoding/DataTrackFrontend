@@ -1,0 +1,18 @@
+<div id="reports-container">
+  <mat-button-toggle-group name="reportType" aria-label="Report Type" id="buttons-container">
+    <mat-button-toggle #alarmButtonTime value="alarmsTime" (click)="reportType = alarmButtonTime.value">
+      Alarms - Time
+    </mat-button-toggle>
+    <mat-button-toggle #alarmButtonPriority value="alarmsPriority" (click)="reportType = alarmButtonPriority.value">
+      Alarms - Priority
+    </mat-button-toggle>
+    <mat-button-toggle #inputRecordTime value="inputRecordTime" (click)="reportType = inputRecordTime.value">
+      Input Record - Time
+    </mat-button-toggle>
+    <mat-button-toggle value="analogTags">Analog tags</mat-button-toggle>
+    <mat-button-toggle value="digitalTags">Digital tags</mat-button-toggle>
+    <mat-button-toggle value="inputRecordValue">Input Record - Value</mat-button-toggle>
+  </mat-button-toggle-group>
+  <app-reports-alarms [type]="reportType" *ngIf="reportType=='alarmsTime' || reportType=='alarmsPriority'"></app-reports-alarms>
+
+</div>

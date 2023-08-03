@@ -16,6 +16,13 @@ import {MatListModule} from "@angular/material/list";
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AlarmCreationComponent } from './alarm-creation/alarm-creation.component';
 import { AlarmDisplayComponent } from './alarm-display/alarm-display.component';
+import { ReportsComponent } from './reports/reports.component';
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatTableModule} from "@angular/material/table";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
+import { ReportsAlarmsComponent } from './reports/reports-alarms/reports-alarms.component';
+
 
 
 
@@ -26,7 +33,9 @@ import { AlarmDisplayComponent } from './alarm-display/alarm-display.component';
     InputDisplayComponent,
     WelcomeComponent,
     AlarmCreationComponent,
-    AlarmDisplayComponent
+    AlarmDisplayComponent,
+    ReportsComponent,
+    ReportsAlarmsComponent
   ],
   imports: [
     CommonModule,
@@ -41,10 +50,17 @@ import { AlarmDisplayComponent } from './alarm-display/alarm-display.component';
     MatExpansionModule,
     MatListModule,
     NgOptimizedImage,
+    MatButtonToggleModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
     exports: [
         NavBarComponent,
         AlarmCreationComponent
-    ]
+    ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+  ]
 })
 export class HomeModule { }
