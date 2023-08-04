@@ -18,7 +18,9 @@ export class ReportsAlarmsComponent {
   startDate: Date = new Date();
   endDate: Date = new Date();
   alarmRecordsByTime: AlarmRecord[] = []
-  alarmRecordsByTimeColumns: string[] = ['Priority', 'Type', 'Edge Value', 'Unit', 'Value', 'Recorded at', 'Input ID'];
+  alarmRecordsByTimeColumns: string[] =
+    ['Priority', 'Alarm ID', 'Type', 'Edge Value', 'Unit', 'Value', 'Recorded at', 'Input ID'];
+  priority: AlarmPriority = AlarmPriority.Low;
 
   alarmTypeOptions = Object.keys(AlarmType)
     .filter(key => typeof AlarmType[key as keyof typeof AlarmType] === 'number')
@@ -43,8 +45,18 @@ export class ReportsAlarmsComponent {
     this.alarmService.getAlarmRecordsByTime(dateRange).subscribe({
       next: value => {
         this.alarmRecordsByTime = value;
+        console.log(this.alarmRecordsByTime)
       },
       error: err => alert(err.message)
+    })
+  }
+
+  getAlarmRecordsByPriority() {
+    this.alarmService.getAlarmRecordsByPriority(this.priority).subscribe({
+      next: value => {
+        this.alarmRecordsByTime = value;
+        console.log(this.alarmRecordsByTime)
+      }, error: err => alert(err.message)
     })
   }
 
@@ -77,4 +89,5 @@ export class ReportsAlarmsComponent {
       default:
         return '';
     }  }
+
 }
