@@ -22,6 +22,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import { ReportsAlarmsComponent } from './reports/reports-alarms/reports-alarms.component';
+import { InputsReportsStaticComponent } from './reports/inputs-reports-static/inputs-reports-static.component';
 
 
 
@@ -35,7 +36,8 @@ import { ReportsAlarmsComponent } from './reports/reports-alarms/reports-alarms.
     AlarmCreationComponent,
     AlarmDisplayComponent,
     ReportsComponent,
-    ReportsAlarmsComponent
+    ReportsAlarmsComponent,
+    InputsReportsStaticComponent
   ],
   imports: [
     CommonModule,

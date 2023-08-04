@@ -42,7 +42,8 @@ export interface InputRecord {
   deviceName: string,
   scanOn: boolean,
   isDigital: boolean,
-  unit?: string
+  unit?: string,
+  recordedAt: Date
 }
 
 export interface Alarm {

@@ -11,8 +11,13 @@
     </mat-button-toggle>
     <mat-button-toggle value="analogTags">Analog tags</mat-button-toggle>
     <mat-button-toggle value="digitalTags">Digital tags</mat-button-toggle>
-    <mat-button-toggle value="inputRecordValue">Input Record - Value</mat-button-toggle>
+    <mat-button-toggle #inputRecordValue value="inputRecordValue" (click)="reportType = inputRecordValue.value">
+      Input Record - Value
+    </mat-button-toggle>
   </mat-button-toggle-group>
-  <app-reports-alarms [type]="reportType" *ngIf="reportType=='alarmsTime' || reportType=='alarmsPriority'"></app-reports-alarms>
+  <app-reports-alarms [type]="reportType" *ngIf="reportType=='alarmsTime' || reportType=='alarmsPriority'">
+  </app-reports-alarms>
 
+  <app-inputs-reports-static [type]="reportType"  *ngIf="reportType=='inputRecordTime' || reportType=='inputRecordValue'">
+  </app-inputs-reports-static>
 </div>
