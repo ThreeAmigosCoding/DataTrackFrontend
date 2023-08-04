@@ -38,4 +38,8 @@ export class InputService {
   getInputsById(id: string): Observable<InputRecord[]>{
     return this.http.get<InputRecord[]>(domain + "Input/GetAllInputRecordsByInput/" + id);
   }
+
+  getAllInputIds(): Observable<string[]>{
+    return this.http.get<string[]>(domain + "Input/GetAllInputIds")
+  }
 }

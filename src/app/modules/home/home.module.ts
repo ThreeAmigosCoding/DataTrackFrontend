@@ -23,6 +23,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import { ReportsAlarmsComponent } from './reports/reports-alarms/reports-alarms.component';
 import { InputsReportsStaticComponent } from './reports/inputs-reports-static/inputs-reports-static.component';
+import {MatSortModule} from "@angular/material/sort";
 
 
 
@@ -55,7 +56,8 @@ import { InputsReportsStaticComponent } from './reports/inputs-reports-static/in
     MatButtonToggleModule,
     MatTableModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSortModule
   ],
     exports: [
         NavBarComponent,

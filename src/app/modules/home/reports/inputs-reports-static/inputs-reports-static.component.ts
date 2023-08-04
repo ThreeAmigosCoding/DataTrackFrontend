@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {DatePipe} from "@angular/common";
 import {DateRange, InputRecord} from "../../../../model/models";
 import {InputService} from "../../services/input.service";
@@ -21,11 +21,17 @@ export class InputsReportsStaticComponent implements OnInit{
 
   inputRecords: InputRecord[] = [];
 
-  inputIds: string[] = ['0ab89c20-e895-4b64-b15e-08db94415d51'];
-  inputId: string = '0ab89c20-e895-4b64-b15e-08db94415d51';
+  inputIds: string[] = [];
+  inputId: string = '';
   ngOnInit() {
-    if (this.type === 'inputRecordTime') return;
-    //poziv na bek za dobavaljanje svih id-jeva
+    this.inputService.getAllInputIds().subscribe({
+      next: value => {
+        this.inputIds = value;
+        if (this.inputIds.length > 0)
+          this.inputId = this.inputIds[0];
+      },
+      error: err => alert(err.message)
+    })
 
   }
 
