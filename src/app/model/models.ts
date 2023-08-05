@@ -42,7 +42,8 @@ export interface InputRecord {
   deviceName: string,
   scanOn: boolean,
   isDigital: boolean,
-  unit?: string
+  unit?: string,
+  recordedAt: Date
 }
 
 export interface Alarm {
@@ -66,5 +67,17 @@ export enum AlarmPriority{
   Low = 0,
   Medium = 1,
   High = 2
+}
+
+export interface AlarmRecord {
+  id: string;
+  alarmDto: AlarmDisplay;
+  value: number;
+  recordedAt: Date;
+}
+
+export interface DateRange {
+  startTime: string;
+  endTime: string;
 }
 

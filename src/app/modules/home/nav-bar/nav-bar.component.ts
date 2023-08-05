@@ -37,4 +37,8 @@ export class NavBarComponent {
   inputDisplay() {
     this.router.navigate(["input-display"]);
   }
+
+  reports() {
+    this.router.navigate(["reports"]);
+  }
 }

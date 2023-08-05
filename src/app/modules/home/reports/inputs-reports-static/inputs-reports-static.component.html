@@ -1,0 +1,67 @@
+<div class="date-range-container" *ngIf="type === 'inputRecordTime'">
+  <mat-form-field class="date-range">
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input [(ngModel)]="startDate" [ngModelOptions]="{standalone: true}" matStartDate placeholder="Start date">
+      <input [(ngModel)]="endDate" [ngModelOptions]="{standalone: true}" matEndDate placeholder="End date">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+  <button class="generate-button" type="button" mat-button (click)="getInputRecordsByTime()">Generate</button>
+</div>
+
+<div class="priority-select-container" *ngIf="type === 'inputRecordValue'">
+  <mat-form-field class="priority-select">
+    <mat-label>Input id</mat-label>
+    <mat-select [(ngModel)]="inputId">
+      <mat-option *ngFor="let inputId of inputIds" [value]="inputId">
+        {{ inputId }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button class="generate-button" type="button" mat-button (click)="getInputRecordsById()">Generate</button>
+</div>
+
+
+<div class="table-container">
+  <table mat-table [dataSource]="inputRecords" class="mat-elevation-z8 reports-table">
+
+    <ng-container matColumnDef="Input ID">
+      <th mat-header-cell *matHeaderCellDef> Input ID </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.inputId}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="IO Address">
+      <th mat-header-cell *matHeaderCellDef> IO Address </th>
+      <td  mat-cell *matCellDef="let element">
+        {{element.ioAddress}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Type">
+      <th mat-header-cell *matHeaderCellDef> Type </th>
+      <td mat-cell *matCellDef="let element"> {{element.isDigital ? 'Digital' : 'Analog'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Value">
+      <th mat-header-cell *matHeaderCellDef> Value </th>
+      <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Unit">
+      <th mat-header-cell *matHeaderCellDef> Unit </th>
+      <td mat-cell *matCellDef="let element"> {{unitDisplay(element.unit)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Recorded at">
+      <th mat-header-cell *matHeaderCellDef> Recorded at </th>
+      <td mat-cell *matCellDef="let element"> {{ element.recordedAt | date: 'dd.MM.yyyy. HH:mm:ss'}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="inputRecordsColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: inputRecordsColumns;"></tr>
+  </table>
+</div>

@@ -1,0 +1,46 @@
+
+.date-range-container, .priority-select-container {
+  display: flex;
+  align-items: baseline;
+}
+
+.date-range, .priority-select {
+  margin: 0 20px;
+  width: 400px;
+}
+
+.generate-button {
+  width: 120px;
+  background-color: #1C273C;
+  color: #E9E9EB !important;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.table-container {
+  margin: 20px;
+  width: calc(100% - 40px);
+  overflow-x: auto;
+}
+
+.reports-table {
+  width: 100%;
+  word-break: break-all;
+}
+
+
+.priority-0 {
+  background-color: #444444;
+  color: #E9E9EB;
+}
+
+.priority-1 {
+  background-color: #f0ad4e;
+  color: #E9E9EB;
+}
+
+.priority-2 {
+  background-color: #d9534f;
+  color: #E9E9EB;
+}

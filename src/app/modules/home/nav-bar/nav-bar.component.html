@@ -17,6 +17,12 @@
             (click)="inputDisplay()">
       Tags
     </button>
+    <button id="reports" class="nav-bar-button"
+            mat-button
+            *ngIf="authService.isLoggedIn()"
+            (click)="reports()">
+      Reports
+    </button>
     <button id="register-button" class="nav-bar-button"
         mat-button
         *ngIf="authService.isAdmin()"

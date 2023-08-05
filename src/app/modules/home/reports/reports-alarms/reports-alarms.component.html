@@ -1,0 +1,76 @@
+<div class="date-range-container" *ngIf="type === 'alarmsTime'">
+  <mat-form-field class="date-range">
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input [(ngModel)]="startDate" [ngModelOptions]="{standalone: true}" matStartDate placeholder="Start date">
+      <input [(ngModel)]="endDate" [ngModelOptions]="{standalone: true}" matEndDate placeholder="End date">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+  <button class="generate-button" type="button" mat-button (click)="getAlarmRecordsByTime()">Generate</button>
+</div>
+
+<div class="priority-select-container" *ngIf="type === 'alarmsPriority'">
+  <mat-form-field class="priority-select">
+    <mat-label>Alarm priority</mat-label>
+    <mat-select [(ngModel)]="priority">
+      <mat-option *ngFor="let priority of alarmPriorityOptions" [value]="priority.value">
+        {{ priority.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button class="generate-button" type="button" mat-button (click)="getAlarmRecordsByPriority()">Generate</button>
+</div>
+
+<div class="table-container">
+  <table mat-table [dataSource]="alarmRecordsByTime" class="mat-elevation-z8 reports-table">
+
+    <ng-container matColumnDef="Priority">
+      <th mat-header-cell *matHeaderCellDef> Priority </th>
+      <td [ngClass]="getPriorityColor(element.alarmDto.priority)" mat-cell *matCellDef="let element">
+        {{alarmPriorityOptions[element.alarmDto.priority].viewValue}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Alarm ID">
+      <th mat-header-cell *matHeaderCellDef> Alarm ID </th>
+      <td  mat-cell *matCellDef="let element">
+        {{element.alarmDto.id}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Type">
+      <th mat-header-cell *matHeaderCellDef> Type </th>
+      <td mat-cell *matCellDef="let element"> {{alarmTypeOptions[element.alarmDto.type].viewValue}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Edge Value">
+      <th mat-header-cell *matHeaderCellDef> Edge Value </th>
+      <td mat-cell *matCellDef="let element"> {{element.alarmDto.edgeValue}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Unit">
+      <th mat-header-cell *matHeaderCellDef> Unit </th>
+      <td mat-cell *matCellDef="let element"> {{unitDisplay(element.alarmDto.unit)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Value">
+      <th mat-header-cell *matHeaderCellDef> Value </th>
+      <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Recorded at">
+      <th mat-header-cell *matHeaderCellDef> Recorded at </th>
+      <td mat-cell *matCellDef="let element"> {{ element.recordedAt | date: 'dd.MM.yyyy. HH:mm:ss' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Input ID">
+      <th mat-header-cell *matHeaderCellDef> Input ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.alarmDto.analogInputId}}  </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="alarmRecordsByTimeColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: alarmRecordsByTimeColumns;"></tr>
+  </table>
+</div>
