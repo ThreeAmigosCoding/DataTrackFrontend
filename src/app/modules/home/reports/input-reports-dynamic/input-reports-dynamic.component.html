@@ -1,0 +1,43 @@
+<div class="table-container">
+  <table mat-table [dataSource]="inputRecords" class="mat-elevation-z8 reports-table">
+
+    <ng-container matColumnDef="Input ID">
+      <th mat-header-cell *matHeaderCellDef> Input ID </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.inputId}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Device name">
+      <th mat-header-cell *matHeaderCellDef> Device name </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.deviceName}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="IO Address">
+      <th mat-header-cell *matHeaderCellDef> IO Address </th>
+      <td  mat-cell *matCellDef="let element">
+        {{element.ioAddress}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Value">
+      <th mat-header-cell *matHeaderCellDef> Value </th>
+      <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Unit">
+      <th mat-header-cell *matHeaderCellDef> Unit </th>
+      <td mat-cell *matCellDef="let element"> {{unitDisplay(element.unit)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Recorded at">
+      <th mat-header-cell *matHeaderCellDef> Recorded at </th>
+      <td mat-cell *matCellDef="let element"> {{ element.recordedAt | date: 'dd.MM.yyyy. HH:mm:ss'}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="inputRecordsColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: inputRecordsColumns;"></tr>
+  </table>
+</div>

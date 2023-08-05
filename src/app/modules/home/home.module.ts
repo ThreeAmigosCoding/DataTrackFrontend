@@ -24,6 +24,7 @@ import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import { ReportsAlarmsComponent } from './reports/reports-alarms/reports-alarms.component';
 import { InputsReportsStaticComponent } from './reports/inputs-reports-static/inputs-reports-static.component';
 import {MatSortModule} from "@angular/material/sort";
+import { InputReportsDynamicComponent } from './reports/input-reports-dynamic/input-reports-dynamic.component';
 
 
 
@@ -38,7 +39,8 @@ import {MatSortModule} from "@angular/material/sort";
     AlarmDisplayComponent,
     ReportsComponent,
     ReportsAlarmsComponent,
-    InputsReportsStaticComponent
+    InputsReportsStaticComponent,
+    InputReportsDynamicComponent
   ],
   imports: [
     CommonModule,
