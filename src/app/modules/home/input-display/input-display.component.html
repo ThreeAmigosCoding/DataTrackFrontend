@@ -1,6 +1,7 @@
 <div id="input-display-container">
   <div id="analog-inputs-container">
     <h2>Analog inputs</h2>
+    <h3 *ngIf="analogInputs.length === 0">No available analog inputs.</h3>
     <mat-accordion multi>
       <mat-expansion-panel *ngFor="let analogInput of analogInputs; let i = index" hideToggle>
         <mat-expansion-panel-header>
@@ -38,6 +39,7 @@
 
   <div id="digital-inputs-container">
     <h2>Digital inputs</h2>
+    <h3 *ngIf="digitalInputs.length === 0">No available digital inputs.</h3>
     <mat-accordion>
       <mat-expansion-panel *ngFor="let digitalInput of digitalInputs; let i = index" hideToggle>
         <mat-expansion-panel-header>
