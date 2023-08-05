@@ -3,6 +3,7 @@ import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from "
 import {AnalogInput, Device, DigitalInput} from "../../../model/models";
 import {AuthService} from "../../auth/auth.service";
 import {InputService} from "../services/input.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-input-creation',
@@ -16,7 +17,9 @@ export class InputCreationComponent implements OnInit{
   simulationType: string = "SIMULATION";
   unit: string = "K";
 
-  constructor(private authService: AuthService, private inputService: InputService) {
+  constructor(private authService: AuthService,
+              private snackBar: MatSnackBar,
+              private inputService: InputService) {
   }
 
   //region Tag Creation
@@ -102,7 +105,10 @@ export class InputCreationComponent implements OnInit{
     }
 
     this.inputService.createDigitalInput(digitalInput).subscribe({
-      next: value => alert(value.message),
+      next: value => this.snackBar.open(value.message, "OK", {
+        duration: 5000,
+        panelClass: ['blue-snackbar']
+      }),
       error: err => alert(err.error.message)
     });
   }
@@ -119,8 +125,11 @@ export class InputCreationComponent implements OnInit{
     }
 
     this.inputService.createAnalogInput(analogInput).subscribe({
-      next: value => alert(value.message),
-      error: err => alert(err.error.message)
+      next: value => this.snackBar.open(value.message, "OK", {
+        duration: 5000,
+        panelClass: ['blue-snackbar']
+      }),
+      error: err => alert(err.message)
     });
   }
 

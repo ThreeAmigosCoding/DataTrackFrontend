@@ -1,6 +1,7 @@
 <div id="input-display-container">
   <div id="analog-inputs-container">
     <h2>Analog inputs</h2>
+    <h3 *ngIf="analogInputs.length === 0">No available analog inputs.</h3>
     <mat-accordion multi>
       <mat-expansion-panel *ngFor="let analogInput of analogInputs; let i = index" hideToggle>
         <mat-expansion-panel-header>
@@ -12,7 +13,7 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
 
-        <div class="control-container">
+        <div class="control-container" *ngIf="authService.isAdmin()">
           <mat-slide-toggle [checked]="analogInput.scanOn"
                             [color]="'primary'"
                             (change)="switchAnalogInputState(i)">
@@ -20,6 +21,7 @@
           </mat-slide-toggle>
 
           <div class="alarm-buttons-container">
+            <button type="button" mat-button (click)="outputAnalog(i)">Output</button>
             <button type="button" mat-button (click)="openAlarms(i)">Alarms</button>
             <button type="button" mat-button (click)="addAlarm(i)">Add alarm</button>
           </div>
@@ -37,6 +39,7 @@
 
   <div id="digital-inputs-container">
     <h2>Digital inputs</h2>
+    <h3 *ngIf="digitalInputs.length === 0">No available digital inputs.</h3>
     <mat-accordion>
       <mat-expansion-panel *ngFor="let digitalInput of digitalInputs; let i = index" hideToggle>
         <mat-expansion-panel-header>
@@ -48,12 +51,17 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
 
+        <div class="control-container" *ngIf="authService.isAdmin()">
+          <mat-slide-toggle [checked]="digitalInput.scanOn"
+                            [color]="'primary'"
+                            (change)="switchDigitalInputState(i)">
+            {{digitalInput.scanOn ? "On" : "Off"}}
+          </mat-slide-toggle>
 
-        <mat-slide-toggle [checked]="digitalInput.scanOn"
-                          [color]="'primary'"
-                          (change)="switchDigitalInputState(i)">
-          {{digitalInput.scanOn ? "On" : "Off"}}
-        </mat-slide-toggle>
+          <div class="alarm-buttons-container">
+            <button type="button" mat-button (click)="outputDigital(i)">Output</button>
+          </div>
+        </div>
 
         <p>Value: {{digitalInput.value == 1 ? "On" : "Off"}}</p>
         <mat-divider></mat-divider>

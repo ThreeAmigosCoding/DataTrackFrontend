@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import {AuthService} from "../auth.service";
 import {UserRegistration} from "../../../model/models";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,9 @@ export class RegisterComponent {
     surname: new FormControl('', [Validators.required]),
   });
 
-  constructor(private dialogRef: MatDialogRef<RegisterComponent>, private authService: AuthService){}
+  constructor(private dialogRef: MatDialogRef<RegisterComponent>,
+              private snackBar: MatSnackBar,
+              private authService: AuthService){}
 
   register(): void{
     if (this.registerForm.valid){
@@ -30,7 +33,10 @@ export class RegisterComponent {
 
       this.authService.register(user, this.authService.getUserMail()).subscribe({
         next: value => {
-          alert(value.message)
+          this.snackBar.open(value.message, "OK", {
+            duration: 5000,
+            panelClass: ['blue-snackbar']
+          });
           this.dialogRef.close()
         }
       });

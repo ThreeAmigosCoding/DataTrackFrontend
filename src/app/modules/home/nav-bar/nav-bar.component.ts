@@ -41,4 +41,8 @@ export class NavBarComponent {
   reports() {
     this.router.navigate(["reports"]);
   }
+
+  welcome() {
+    this.router.navigate(["welcome"]);
+  }
 }
