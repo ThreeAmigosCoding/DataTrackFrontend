@@ -1,0 +1,10 @@
+#welcome-container {
+  height: 100vh;
+}
+
+#background-image{
+  width: calc(100vw - 300px);
+  object-fit: cover;
+  height: 100%;
+  margin-bottom: -15px;
+}

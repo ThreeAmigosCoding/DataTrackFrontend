@@ -1,38 +1,48 @@
 <div id="nav-bar">
+    <h1 (click)="welcome()">
+      DataTrack
+      <mat-icon> insert_chart</mat-icon>
+    </h1>
     <button id="login-button" class="nav-bar-button"
         mat-button
         *ngIf="!authService.isLoggedIn()"
         (click)="login()">
+        <mat-icon>login</mat-icon>
         Login
     </button>
     <button id="input-creation" class="nav-bar-button"
             mat-button
             *ngIf="authService.isAdmin()"
             (click)="inputCreation()">
+      <mat-icon>add</mat-icon>
       Create tag
     </button>
     <button id="input-display" class="nav-bar-button"
             mat-button
             *ngIf="authService.isLoggedIn()"
             (click)="inputDisplay()">
+      <mat-icon>input</mat-icon>
       Tags
     </button>
     <button id="reports" class="nav-bar-button"
             mat-button
             *ngIf="authService.isAdmin()"
             (click)="reports()">
+      <mat-icon>event_note</mat-icon>
       Reports
     </button>
     <button id="register-button" class="nav-bar-button"
         mat-button
         *ngIf="authService.isAdmin()"
         (click)="register()">
+      <mat-icon>person_add</mat-icon>
         Register
     </button>
     <button id="logout-button" class="nav-bar-button"
         mat-button
         *ngIf="authService.isLoggedIn()"
         (click)="logout()">
-        Log Out
+      <mat-icon>logout</mat-icon>
+      Log Out
     </button>
 </div>
