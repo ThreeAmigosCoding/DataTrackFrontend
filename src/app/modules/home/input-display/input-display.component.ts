@@ -7,6 +7,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {AlarmCreationComponent} from "../alarm-creation/alarm-creation.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AlarmDisplayComponent} from "../alarm-display/alarm-display.component";
+import {OutputComponent} from "./output/output.component";
 
 @Component({
   selector: 'app-input-display',
@@ -20,7 +21,7 @@ export class InputDisplayComponent implements OnInit{
 
   constructor(private webSocketService: WebSocketService,
               private inputService: InputService,
-              private authService: AuthService,
+              public authService: AuthService,
               private snackBar: MatSnackBar,
               private dialog: MatDialog) {
   }
@@ -98,4 +99,14 @@ export class InputDisplayComponent implements OnInit{
   openAlarms(i: number) {
     this.dialog.open(AlarmDisplayComponent, {data: this.analogInputs[i]});
   }
+
+  outputAnalog(i: number) {
+    this.dialog.open(OutputComponent, {data: this.analogInputs[i]});
+  }
+
+  outputDigital(i: number) {
+    this.dialog.open(OutputComponent, {data: this.digitalInputs[i]});
+  }
+
+
 }

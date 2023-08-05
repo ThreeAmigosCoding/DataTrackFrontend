@@ -1,0 +1,17 @@
+<div id="output-container">
+  <mat-form-field class="field" *ngIf="!inputRecord.isDigital">
+    <mat-label>Value</mat-label>
+    <input matInput type="number" name="value" [(ngModel)]="value">
+  </mat-form-field>
+
+  <mat-form-field class="field" *ngIf="inputRecord.isDigital">
+    <mat-label>Value</mat-label>
+    <mat-select (selectionChange)="onSelectChange($event)">
+      <mat-option value="1">On</mat-option>
+      <mat-option value="0">Off</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <button type="button" mat-button (click)="applyOutputValue()">Apply</button>
+</div>

@@ -25,6 +25,7 @@ import { ReportsAlarmsComponent } from './reports/reports-alarms/reports-alarms.
 import { InputsReportsStaticComponent } from './reports/inputs-reports-static/inputs-reports-static.component';
 import {MatSortModule} from "@angular/material/sort";
 import { InputReportsDynamicComponent } from './reports/input-reports-dynamic/input-reports-dynamic.component';
+import { OutputComponent } from './input-display/output/output.component';
 
 
 
@@ -40,7 +41,8 @@ import { InputReportsDynamicComponent } from './reports/input-reports-dynamic/in
     ReportsComponent,
     ReportsAlarmsComponent,
     InputsReportsStaticComponent,
-    InputReportsDynamicComponent
+    InputReportsDynamicComponent,
+    OutputComponent
   ],
   imports: [
     CommonModule,

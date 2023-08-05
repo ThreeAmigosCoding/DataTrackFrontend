@@ -19,7 +19,7 @@
     </button>
     <button id="reports" class="nav-bar-button"
             mat-button
-            *ngIf="authService.isLoggedIn()"
+            *ngIf="authService.isAdmin()"
             (click)="reports()">
       Reports
     </button>
