@@ -42,4 +42,8 @@ export class InputService {
   getAllInputIds(): Observable<string[]>{
     return this.http.get<string[]>(domain + "Input/GetAllInputIds")
   }
+
+  deleteInput(ioAddress: string, type: string): Observable<any>{
+    return this.http.delete(domain + "Input/DeleteInput/" + ioAddress + "/" + type);
+  }
 }

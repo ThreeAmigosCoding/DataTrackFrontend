@@ -109,4 +109,20 @@ export class InputDisplayComponent implements OnInit{
   }
 
 
+  deleteInput(ioAddress: string, digital: string) {
+    if (!confirm("Do you want to delete this tag?")) return;
+    this.inputService.deleteInput(ioAddress, digital).subscribe({
+      next: value => {
+        this.snackBar.open(value.message, "OK", {
+          duration: 5000,
+          panelClass: ['blue-snackbar']
+        });
+        if (digital === 'digital')
+          this.digitalInputs = this.digitalInputs.filter(item => item.ioAddress !== ioAddress);
+        else
+          this.analogInputs = this.analogInputs.filter(item => item.ioAddress !== ioAddress);
+      },
+      error: err => alert(err.error)
+    });
+  }
 }

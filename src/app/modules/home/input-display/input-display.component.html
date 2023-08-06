@@ -24,6 +24,8 @@
             <button type="button" mat-button (click)="outputAnalog(i)">Output</button>
             <button type="button" mat-button (click)="openAlarms(i)">Alarms</button>
             <button type="button" mat-button (click)="addAlarm(i)">Add alarm</button>
+            <button type="button" class="delete-button" mat-button
+                    (click)="deleteInput(analogInput.ioAddress, 'analog')">Delete</button>
           </div>
         </div>
 
@@ -60,6 +62,7 @@
 
           <div class="alarm-buttons-container">
             <button type="button" mat-button (click)="outputDigital(i)">Output</button>
+            <button type="button" class="delete-button" mat-button (click)="deleteInput(digitalInput.ioAddress, 'digital')">Delete</button>
           </div>
         </div>
 

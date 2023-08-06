@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {DatePipe} from "@angular/common";
 import {InputRecord} from "../../../../model/models";
 import {WebSocketService} from "../../services/web-socket.service";
@@ -64,11 +64,12 @@ export class InputReportsDynamicComponent implements OnInit{
   getAllUserInputs() {
     this.inputService.getAllUserInputs(this.authService.getUserId()).subscribe({
       next: value => {
-        value.map(item => {
+        this.inputRecords = value.filter(item => {
           if (this.type === "digitalTags" && item.isDigital)
-            this.inputRecords.push(item);
+            return item;
           else if (this.type === "analogTags" && !item.isDigital)
-            this.inputRecords.push(item);
+            return item;
+          return
         })
       }, error: err => {
         alert(err.error.message)
